@@ -1,28 +1,32 @@
 //model
-let face = [
+let images = {
+    face: [
      `face1.png`,
      `face2.png`,
      `face3.png`,
      `face4.png`,
+    ],
 
-    ];
-let body = [
+    body: [
     `bod1.png`,
     `bod2.png`,
     `bod3.png`,
     `bod4.png`,
-];
-let leg = [
+    ],
+
+    leg: [
     `legs1.png`,
     `legs2.png`,
     `legs3.png`,
     `legs4.png`,
-];
+    ]
+};
 
-
-console.log(face)
-console.log(body)
-console.log(leg)
+let currentIndex = {
+    face: 0,
+    body: 0,
+    leg: 0
+};
 
 //view
 updateView();
@@ -31,21 +35,21 @@ function updateView() {
     <h1>Change the look</h1>
 
     <div id="face">
-        <button><p> ❮ </p></button>
-        <img src="${face[0]}">
-        <button><p>❯</p></button>
+        <button onclick="changeImage('face', -1)"><p> ❮ </p></button>
+        <img src="${images.face[currentIndex.face]}">
+        <button onclick="changeImage('face', 1)"><p>❯</p></button>
     </div>
 
     <div id="body">
-        <button><p> ❮ </p></button>
-        <img src="${body[0]}">
-        <button onclick="change()"><p>❯</p></button>
+        <button onclick="changeImage('body',-1)"><p> ❮ </p></button>
+        <img src="${images.body[currentIndex.body]}">
+        <button onclick="changeImage('body', 1)"><p>❯</p></button>
     </div>
 
     <div id="leg">
-        <button><p> ❮ </p></button>
-        <img src="${leg[0]}">
-        <button><p>❯</p></button>
+        <button onclick="changeImage('leg', -1)"><p> ❮ </p></button>
+        <img src="${images.leg[currentIndex.leg]}">
+        <button onclick="changeImage('leg', 1)"><p>❯</p></button>
     </div>
     
     `;
@@ -53,7 +57,16 @@ function updateView() {
 
 
 //controller
-function change() {
-    body++
-    updateView();
-}
+function changeImage(part, direction) {
+    currentIndex[part] += direction;
+    if (currentIndex[part] < 0) {
+      currentIndex[part] = 0;
+    } else if (currentIndex[part] >= images[part].length) {
+      currentIndex[part] = images[part].length - 1;
+    }
+    document.querySelector(`#${part} img`).src = images[part][currentIndex[part]];
+  }
+
+
+
+
