@@ -1,0 +1,33 @@
+body {
+    background-image: url(/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+#face,
+#body,
+#leg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#face img,
+#body img,
+#leg img {
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+}
